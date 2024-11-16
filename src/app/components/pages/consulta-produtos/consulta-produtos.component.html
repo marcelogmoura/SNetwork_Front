@@ -13,23 +13,30 @@
     </thead>
     <tbody>
         <tr  *ngFor="let p of produtos">
-            <td>{{ p.nome }}</td>
+            <td>{{ p.nome | uppercase }}</td>
             <td>{{ p.preco | currency: 'R$' }}</td> 
             <td>{{ p.quantidade }}</td>
             <td>{{ p.dataCadastro | date }}</td> 
             <td>{{ p.ean }}</td>
-            <td>{{ p.total}}</td>
+            <td>{{ p.quantidade * p.preco | currency: 'R$'}}</td>
             <td>
-                <button class="btn btn-outline-primary btn-sm me-2">Editar</button>
-                <button class="btn btn-outline-danger btn-sm">Excluir</button>
-            </td>
+              <button [routerLink]="['/pages/edicao-produtos', p.id]" 
+                   class="btn btn-outline-primary btn-sm me-2">
+                Editar
+              </button>
+
+              <button class="btn btn-outline-danger btn-sm"
+              (click)="onDelete(p.id) ">
+                Excluir
+              </button>
+          </td>
         </tr>
  
     </tbody>
       <tfoot>
         <tr>
           <td colspan="2"> 
-            Total de produtos: {{produtos.length}} 
+            Produtos: {{produtos.length}} 
           </td>
         </tr>
       </tfoot>

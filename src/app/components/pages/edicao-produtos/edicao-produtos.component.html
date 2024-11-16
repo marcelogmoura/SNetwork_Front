@@ -1,1 +1,77 @@
-<p>edicao-produtos works!</p>
+<h5 class="mb-2">Edição de Produtos</h5>
+
+     <div *ngIf="mensagem != ''"
+            class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{mensagem}}</strong>
+        <button type="button" 
+            class="btn-close" 
+            aria-label="Close"
+           (click)="mensagem = ''">
+        </button>
+        </div>
+   
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+
+
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome do Produto</label>
+        <input type="text" 
+               class="form-control" 
+               id="nome" 
+               placeholder="Informe o nome" 
+               formControlName="nome"
+               required />
+
+               <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+                    O nome precisa de pelo menos 2 caracteres.
+               </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="preco" class="form-label">Preço</label>
+        <input type="text" 
+               class="form-control" 
+               id="preco" 
+               placeholder="R$" 
+               formControlName="preco"
+               required />
+
+               <div class="text-danger" *ngIf="f['preco'].touched && f['preco'].invalid">
+                O preço deve ser maior do que R$1.00
+               </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input type="text" 
+               class="form-control" 
+               id="quantidade" 
+               placeholder="Digite a quantidade do produto"
+               formControlName="quantidade"
+               required />
+
+               <div class="text-danger" *ngIf="f['quantidade'].touched && f['quantidade'].invalid">
+                    Informe a quantidade, maior ou igual a 1 item.
+               </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="ean" class="form-label">EAN</label>
+        <input type="text" 
+               class="form-control" 
+               id="ean" 
+               placeholder="Informe o ean"
+               formControlName="ean"
+               pattern="^\d{1,5}$"
+               required />
+
+               <div class="text-danger" *ngIf="f['ean'].touched && f['ean'].invalid">
+                O EAN precisa ter de 1 a 5 numeros
+               </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" 
+        [disabled]="form.invalid">
+        Atualizar
+    </button>
+</form>

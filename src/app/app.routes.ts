@@ -27,6 +27,11 @@ export const routes: Routes = [
     },
 
     {
+        path: 'pages/edicao-produtos/:id',
+        component: EdicaoProdutosComponent
+    },
+
+    {
         path: '',  
         pathMatch: 'full',
         redirectTo: '/pages/consulta-produdos'
