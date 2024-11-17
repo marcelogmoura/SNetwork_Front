@@ -68,7 +68,9 @@ export class EdicaoProdutosComponent {
         },
         error: (e) => {
         console.log(e.error);
-        this.mensagem = 'Erro ao atualizar o produto.';
+        this.mensagem = 'Erro ao atualizar o produto, verifique o EAN digitado';
+        this.form.reset();        
+        
         } 
         });
         
