@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="let p of produtos">
+        <tr  *ngFor="let p of produtos | paginate : { itemsPerPage: 4, currentPage: pagina }" >
             <td>{{ p.nome | uppercase }}</td>
             <td>{{ p.preco | currency: 'R$' }}</td> 
             <td>{{ p.quantidade }}</td>
@@ -36,9 +36,20 @@
       <tfoot>
         <tr>
           <td colspan="2"> 
-            Produtos: {{produtos.length}} 
+            Total de Produtos: {{produtos.length}} 
           </td>
         </tr>
       </tfoot>
 
+
+
 </table>
+
+
+<div class="d-flex justify-content-center">
+  <pagination-controls
+    previousLabel=" Anterior"
+    nextLabel="Próxima "
+    (pageChange)="handlePageChange($event)"
+  />
+</div>
