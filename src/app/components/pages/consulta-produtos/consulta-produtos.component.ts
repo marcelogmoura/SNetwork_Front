@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -26,11 +27,14 @@ export class ConsultaProdutosComponent implements OnInit{
   pagina: number = 1;
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private spinnerService : NgxSpinnerService
     ) {
     }
 
   ngOnInit(): void {
+
+    this.spinnerService.show();
 
     this.httpClient.get(`${environment.apiProdutos}/produtos`)
       .subscribe(
@@ -38,6 +42,8 @@ export class ConsultaProdutosComponent implements OnInit{
           next : (data) => {
             console.log(data);
             this.produtos = data as any[];
+
+            this.spinnerService.hide();
           },
           error : (e) => {
             console.log(e.error);
@@ -49,12 +55,19 @@ export class ConsultaProdutosComponent implements OnInit{
 
 
   onDelete(id : string) : void {
+
+    
     if(confirm ('Excluir ?')){
+
+      this.spinnerService.show();
+
       this.httpClient.delete(`${environment.apiProdutos}/produtos/${id}` ,
       { responseType : 'text' })
           .subscribe({
             next: (data) => {
               this.ngOnInit();
+
+              this.spinnerService.hide();
             },error : (e) => {
               console.log(e.error);
             }

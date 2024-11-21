@@ -51,8 +51,9 @@
           this.mensagem = 'Cadastrado com sucesso';          
           this.form.reset();
         },
-        error: (e) => {
-        console.log(e.error);
+        error: (e) => {        
+        this.mensagem = 'Erro ao atualizar o produto, verifique o EAN digitado';
+        
         }
         });
       
