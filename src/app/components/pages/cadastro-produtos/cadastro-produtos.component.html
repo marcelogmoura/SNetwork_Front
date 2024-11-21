@@ -1,19 +1,19 @@
 <h5 class="mb-2">Cadastro de Produtos</h5>
 
-<div *ngIf="mensagem != ''"
-class="alert alert-success alert-dismissible fade show" role="alert">
-<strong>{{mensagem}}</strong>
-<button type="button" 
-class="btn-close" 
-aria-label="Close"
-(click)="mensagem = ''">
-</button>
-</div>
+    <div *ngIf="mensagem != ''"
+    class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{mensagem}}</strong>
+        <button type="button" 
+                class="btn-close" 
+                aria-label="Close" (click)="mensagem = ''">
+        </button>
+    </div>
    
     <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
 
 
     <div class="mb-3">
+        <div class="col-md-3">
         <label for="nome" class="form-label">Nome do Produto</label>
         <input type="text" 
                class="form-control" 
@@ -26,8 +26,10 @@ aria-label="Close"
                     O nome precisa de pelo menos 2 caracteres.
                </div>
     </div>
+    </div>
 
     <div class="mb-3">
+        <div class="col-md-3">
         <label for="preco" class="form-label">Preço</label>
         <input type="text" 
                class="form-control" 
@@ -40,8 +42,10 @@ aria-label="Close"
                 O preço deve ser maior do que R$1.00
                </div>
     </div>
+    </div>
 
     <div class="mb-3">
+        <div class="col-md-3">
         <label for="quantidade" class="form-label">Quantidade</label>
         <input type="text" 
                class="form-control" 
@@ -54,8 +58,10 @@ aria-label="Close"
                     Informe a quantidade, maior ou igual a 1 item.
                </div>
     </div>
+    </div>
 
     <div class="mb-3">
+        <div class="col-md-3">
         <label for="ean" class="form-label">EAN</label>
         <input type="text" 
                class="form-control" 
@@ -68,6 +74,7 @@ aria-label="Close"
                <div class="text-danger" *ngIf="f['ean'].touched && f['ean'].invalid">
                 O EAN precisa ter de 1 a 5 numeros
                </div>
+    </div>
     </div>
 
     <button type="submit" class="btn btn-success" [disabled]="form.invalid">

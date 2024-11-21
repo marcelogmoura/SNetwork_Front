@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="let p of produtos | paginate : { itemsPerPage: 4, currentPage: pagina }" >
+        <tr  *ngFor="let p of produtos | paginate : { itemsPerPage: 5, currentPage: pagina }" >
             <td>{{ p.nome | uppercase }}</td>
             <td>{{ p.preco | currency: 'R$' }}</td> 
             <td>{{ p.quantidade }}</td>
@@ -36,7 +36,7 @@
       <tfoot>
         <tr>
           <td colspan="2"> 
-            Total de Produtos: {{produtos.length}} 
+            Total de Produtos: <strong> {{produtos.length}} </strong> 
           </td>
         </tr>
       </tfoot>
